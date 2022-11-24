@@ -18,6 +18,14 @@ router.get('/all', (req, res) => {
         .catch((error) => res.json({ message: error }));
 });
 
+router.get('/findEmail/:email', (req, res) => {
+    const { email } = req.params;
+    userSchema
+        .findOne({ email: email })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({message: error}));
+});
+
 router.get('/find/:name', (req, res) => {
     const { name } = req.params;
     userSchema
