@@ -28,79 +28,108 @@ const transporter = nodemailer.createTransport({
 });
 
 router.post('/sendMail', (req, res) => {
-    const token = createRandomToken();
+    try{
+        const token = createRandomToken();
 
-    transporter.sendMail({
-        from: '"Bienvenido a ReadAm" <readam970@gmail.com>', 
-        to: `${ req.body.email }`, 
-        subject: "Hola nuevo usuario", 
-        html: `
-            <center> 
-                <h1> Hola bienvenido a la verificacion de ReadAm <h1/> 
-                <h2> Este es tu token de verificacion: <br/> <b> ${token} <b/> <h2/>
-            <center/>`, 
-    });
-
-    res.json(token);
+        transporter.sendMail({
+            from: '"Bienvenido a ReadAm" <readam970@gmail.com>', 
+            to: `${ req.body.email }`, 
+            subject: "Hola nuevo usuario", 
+            html: `
+                <center> 
+                    <h1> Hola bienvenido a la verificacion de ReadAm <h1/> 
+                    <h2> Este es tu token de verificacion: <br/> <b> ${token} <b/> <h2/>
+                <center/>`, 
+        });
+    
+        res.json(token);
+    }catch (error){
+        res.json('error');
+    }  
 });
 
 router.post('/insert', (req, res) => {
-    const user = userSchema(req.body);
-    user
-        .save()
-        .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error }));
+    try{
+        const user = userSchema(req.body);
+        user
+            .save()
+            .then((data) => res.json(data))
+            .catch((error) => res.json({ message: error }));
+        res.json('Cambios realizados');    
+    }catch (error){
+        res.json('error');
+    }
 });
 
 router.get('/all', (req, res) => {
-    userSchema
+    try{
+        userSchema
         .find()
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
+    } catch (e) {
+        res.json('error');
+    }  
 });
 
 router.get('/findEmail/:email', (req, res) => {
-    const { email } = req.params;
-    userSchema
-        .findOne({ email: email })
-        .then((data) => res.json(data))
-        .catch((error) => res.json({message: error}));
+    try{
+        const { email } = req.params;
+        userSchema
+            .findOne({ email: email })
+            .then((data) => res.json(data))
+            .catch((error) => res.json({message: error}));        
+    }catch (error) {
+        res.json('error');
+    }
 });
 
 router.get('/find/:name', (req, res) => {
-    const { name } = req.params;
-    userSchema
-        .findOne({ userName: name })
-        .then((data) => res.json(data))
-        .catch((error) => res.json({message: error}));
+    try{
+        const { name } = req.params;
+        userSchema
+            .findOne({ userName: name })
+            .then((data) => res.json(data))
+            .catch((error) => res.json({message: error}));
+    }catch (error) {
+        res.json('error');
+    }
 });
 
 router.put('/update/:name', (req, res) => {
-    const { name } = req.params;
-    const { userName, email, password, imgPerfilAddress, imgBackgroundAddress } = req.body;
-    
-    userSchema
-        .updateOne({ userName: name }, 
-            {
-                $set: 
+    try{
+        const { name } = req.params;
+        const { userName, email, password, imgPerfilAddress, imgBackgroundAddress } = req.body;
+        
+        userSchema
+            .updateOne({ userName: name }, 
                 {
-                    userName: userName, 
-                    email: email, 
-                    password: password, 
-                    imgPerfilAddress: imgPerfilAddress, 
-                    imgBackgroundAddress: imgBackgroundAddress
-                }
-            })
-        .then((data) => res.json(data))
-        .catch((error) => res.json({message: error}));
+                    $set: 
+                    {
+                        userName: userName, 
+                        email: email, 
+                        password: password, 
+                        imgPerfilAddress: imgPerfilAddress, 
+                        imgBackgroundAddress: imgBackgroundAddress
+                    }
+                })
+            .then((data) => res.json(data))
+            .catch((error) => res.json({message: error}));
+    }catch(error){
+        res.json(error);
+    }
 });
 
 router.delete('/remove/:name', (req, res) => {
-    const { name } = req.params;
-    userSchema
-        .remove({ userName: name })
-        .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error }));
+    try{
+        const { name } = req.params;
+        userSchema
+            .remove({ userName: name })
+            .then((data) => res.json(data))
+            .catch((error) => res.json({ message: error }));
+    }catch (error){
+        res.json(error);
+    }
 });
 
 module.exports = router;
