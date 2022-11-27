@@ -15,7 +15,7 @@ const createRandomToken = () => {
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     service: 'gmail',
-    port: 25,
+    port: process.env.PORT || 25,
     secure: false,
     auth:{ 
         type:'login',
