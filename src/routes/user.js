@@ -1,7 +1,7 @@
 const express = require('express');
 const userSchema = require('../models/user');
 const nodemailer = require('nodemailer');
-
+require('dotenv').config();
 const router = express.Router();
 
 const createRandomToken = () => {
@@ -27,13 +27,12 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-router.get('/sendMail/email', (req, res) => {
-    const { email } = req.params;
+router.post('/sendMail', (req, res) => {
     const token = createRandomToken();
 
     transporter.sendMail({
         from: '"Bienvenido a ReadAm" <readam970@gmail.com>', 
-        to: `${ email }`, 
+        to: `${ req.body.email }`, 
         subject: "Hola nuevo usuario", 
         html: `
             <center> 
