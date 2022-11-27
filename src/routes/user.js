@@ -27,7 +27,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-router.post('/sendMail/email', (req, res) => {
+router.get('/sendMail/email', (req, res) => {
     const { email } = req.params;
     const token = createRandomToken();
 
