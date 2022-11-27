@@ -20,6 +20,26 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+router.post('/sendMailRecover', async (req, res) => {
+    try{
+        const tokenRecover = createRandomToken();
+        
+        await transporter.sendMail({
+            from: '"Recuperacion de contraseña" <readam970@gmail.com>', 
+            to: `${ req.body.email }`, 
+            subject: "Token de recuperacion", 
+            html: `
+                <center> 
+                    <h1> Hola, bienvenido a la recuperacion de contraseña de ReadAm <h1/> 
+                    <h2> Este es tu token de recuperacion: <br/> <b> ${token} <b/> <h2/>
+                <center/>`, 
+        });
+        res.json(tokenRecover);
+    }catch (e){
+
+    }
+});
+
 router.post('/sendMail', async(req, res) => {
     try{
         const token = createRandomToken();
@@ -30,7 +50,7 @@ router.post('/sendMail', async(req, res) => {
             subject: "Hola nuevo usuario", 
             html: `
                 <center> 
-                    <h1> Hola bienvenido a la verificacion de ReadAm <h1/> 
+                    <h1> Hola, bienvenido a la verificacion de ReadAm <h1/> 
                     <h2> Este es tu token de verificacion: <br/> <b> ${token} <b/> <h2/>
                 <center/>`, 
         });
