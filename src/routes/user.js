@@ -1,7 +1,49 @@
 const express = require('express');
 const userSchema = require('../models/user');
+const nodemailer = require('nodemailer');
 
 const router = express.Router();
+
+const createRandomToken = () => {
+    let token = '';
+    for(let i = 0; i < 6; i++){
+        token += Math.floor(Math.random() * (6 - 1) + 1);
+    }
+    return token;
+}
+
+const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    service: 'gmail',
+    port: 25,
+    secure: false,
+    auth:{ 
+        type:'login',
+        user: process.env.READAM_USER,
+        pass: process.env.READAM_PASS 
+    },
+    tls: {
+        rejectUnauthorized: false
+    }
+});
+
+router.post('/sendMail/email', (req, res) => {
+    const { email } = req.params;
+    const token = createRandomToken();
+
+    transporter.sendMail({
+        from: '"Bienvenido a ReadAm" <readam970@gmail.com>', 
+        to: `${ email }`, 
+        subject: "Hola nuevo usuario", 
+        html: `
+            <center> 
+                <h1> Hola bienvenido a la verificacion de ReadAm <h1/> 
+                <h2> Este es tu token de verificacion: <br/> <b> ${token} <b/> <h2/>
+            <center/>`, 
+    });
+
+    res.json(token);
+});
 
 router.post('/insert', (req, res) => {
     const user = userSchema(req.body);
