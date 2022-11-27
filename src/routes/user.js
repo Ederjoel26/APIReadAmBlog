@@ -31,7 +31,7 @@ router.post('/sendMailRecover', async (req, res) => {
             html: `
                 <center> 
                     <h1> Hola, bienvenido a la recuperacion de contraseña de ReadAm <h1/> 
-                    <h2> Este es tu token de recuperacion: <br/> <b> ${token} <b/> <h2/>
+                    <h2> Este es tu token de recuperacion: <br/> <b> ${tokenRecover} <b/> <h2/>
                 <center/>`, 
         });
         res.json(tokenRecover);
