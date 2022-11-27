@@ -20,11 +20,11 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-router.post('/sendMail', (req, res) => {
+router.post('/sendMail', async(req, res) => {
     try{
         const token = createRandomToken();
 
-        transporter.sendMail({
+        await transporter.sendMail({
             from: '"Bienvenido a ReadAm" <readam970@gmail.com>', 
             to: `${ req.body.email }`, 
             subject: "Hola nuevo usuario", 
