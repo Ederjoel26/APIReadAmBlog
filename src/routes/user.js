@@ -78,6 +78,7 @@ router.get('/find/:name', (req, res) => {
 router.put('/update/:name', (req, res) => {
     const { name } = req.params;
     const { userName, email, password, imgPerfilAddress, imgBackgroundAddress } = req.body;
+    
     userSchema
         .updateOne({ userName: name }, 
             {
