@@ -115,7 +115,7 @@ router.put('/update/:emailParam', (req, res) => {
     try{
         const { emailParam } = req.params;
         const { userName, email, password, imgPerfilAddress, imgBackgroundAddress } = req.body;
-        
+        const passEncrypt = md5(password);
         userSchema
             .updateOne({ email: emailParam }, 
                 {
@@ -123,7 +123,7 @@ router.put('/update/:emailParam', (req, res) => {
                     {
                         userName: userName, 
                         email: email, 
-                        password: password, 
+                        password: passEncrypt, 
                         imgPerfilAddress: imgPerfilAddress, 
                         imgBackgroundAddress: imgBackgroundAddress
                     }
