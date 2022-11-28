@@ -65,7 +65,7 @@ router.post('/sendMail', async(req, res) => {
 router.post('/insert', (req, res) => {
     try{
         req.body.password = md5(req.body.password);
-        const user = userSchema();
+        const user = userSchema(req.body);
         user
             .save()
             .then((data) => res.json(data))
