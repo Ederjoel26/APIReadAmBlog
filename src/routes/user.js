@@ -1,6 +1,7 @@
 const express = require('express');
 const userSchema = require('../models/user');
 const nodemailer = require('nodemailer');
+const md5 = require('js-md5');
 require('dotenv').config();
 const router = express.Router();
 
@@ -63,7 +64,8 @@ router.post('/sendMail', async(req, res) => {
 
 router.post('/insert', (req, res) => {
     try{
-        const user = userSchema(req.body);
+        req.body.password = md5(req.body.password);
+        const user = userSchema();
         user
             .save()
             .then((data) => res.json(data))
