@@ -109,13 +109,13 @@ router.get('/find/:name', (req, res) => {
     }
 });
 
-router.put('/update/:name', (req, res) => {
+router.put('/update/:emailParam', (req, res) => {
     try{
-        const { name } = req.params;
+        const { emailParam } = req.params;
         const { userName, email, password, imgPerfilAddress, imgBackgroundAddress } = req.body;
         
         userSchema
-            .updateOne({ userName: name }, 
+            .updateOne({ email: emailParam }, 
                 {
                     $set: 
                     {
