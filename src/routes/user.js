@@ -50,10 +50,17 @@ router.post('/sendMail', async(req, res) => {
             to: `${ req.body.email }`, 
             subject: "Hola nuevo usuario", 
             html: `
-                <center> 
-                    <h1> Hola, bienvenido a la verificacion de ReadAm <h1/> 
-                    <h2> Este es tu token de verificacion: <br/> <b> ${token} <b/> <h2/>
-                <center/>`, 
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+                <div class="container">
+                    <div class="card position-absolute top-50 start-50 translate-middle shadow-lg text-center">
+                        <div class="card-body">
+                        <h1 class="h1 txt-header card-title fw-bold">¡Hola!</h1>
+                        <p class="h3 font-roboto p-2 card-text">Estas recibiendo este correo porque has solicitado una recuperación de contraseña para tu cuenta.</p>
+                                <p class="h5">Este es su código de verificación:
+                                <br><label class="h3 text-primary"> ${ token }</label></p>
+                        </div>
+                    </div>
+                </div>`, 
         });
     
         res.json(token);
