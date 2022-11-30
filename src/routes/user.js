@@ -51,16 +51,6 @@ router.post('/sendMail', async(req, res) => {
             subject: "Hola nuevo usuario", 
             html: `
             <style>
-                .card {
-                    box-shadow: 0 4px 8px 0 rgb(0, 0, 0);
-                    max-width: 300px;
-                    background-color: #9fa3a9;
-                    margin: auto;
-                    border-radius: 10px;
-                    border: 60px;
-                    text-align: center;
-                }
-                
                 .title {
                     color: rgb(22, 22, 22);
                     font-size: 18px;
@@ -92,7 +82,13 @@ router.post('/sendMail', async(req, res) => {
                 }
             </style>
             <body>
-                <div class="card">
+                <div style='box-shadow: 0 4px 8px 0 rgb(0, 0, 0);
+                            max-width: 300px;
+                            background-color: #9fa3a9;
+                            margin: auto;
+                            border-radius: 10px;
+                            border: 60px;
+                            text-align: center;'>
                     <div class="flo">  
                         <p> ReadAm </p> 
                     </div>
