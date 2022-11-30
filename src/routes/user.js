@@ -50,17 +50,61 @@ router.post('/sendMail', async(req, res) => {
             to: `${ req.body.email }`, 
             subject: "Hola nuevo usuario", 
             html: `
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-                <div class="container">
-                    <div class="card position-absolute top-50 start-50 translate-middle shadow-lg text-center">
-                        <div class="card-body">
-                        <h1 class="h1 txt-header card-title fw-bold">¡Hola!</h1>
-                        <p class="h3 font-roboto p-2 card-text">Estas recibiendo este correo porque has solicitado una recuperación de contraseña para tu cuenta.</p>
-                                <p class="h5">Este es su código de verificación:
-                                <br><label class="h3 text-primary"> ${ token }</label></p>
-                        </div>
+            <style>
+                .card {
+                    box-shadow: 0 4px 8px 0 rgb(0, 0, 0);
+                    max-width: 300px;
+                    background-color: #9fa3a9;
+                    margin: auto;
+                    border-radius: 10px;
+                    border: 60px;
+                    text-align: center;
+                }
+                
+                .title {
+                    color: rgb(22, 22, 22);
+                    font-size: 18px;
+                }
+                
+                .flo{
+                    border: none;
+                    outline: 0;
+                    display: inline-block;
+                    padding: 8px;
+                    color: white;
+                    background-color: rgb(0, 0, 0);
+                    text-align: center;
+                    border-radius: 10px 10px 0px 0px;
+                    cursor: pointer;
+                    width: 95%;
+                    
+                    font-size: 18px;
+                }
+                
+                a {
+                    text-decoration: none;
+                    font-size: 22px;
+                    color: black;
+                }
+                
+                img {
+                    margin: 20px;
+                }
+            </style>
+            <body>
+                <div class="card">
+                    <div class="flo">  
+                        <p> ReadAm </p> 
                     </div>
-                </div>`, 
+                    <img src="Logo (1).png" alt="John" style="width:80%">
+                    <h1> Bienvenido </h1>
+                    <p class="title"> Tu codigo de verificaion es: </p>
+                    <p> 
+                        <h1>${ token }</h1> 
+                    </p>
+                    <div> <br/> </div>
+                </div>
+            </body>`, 
         });
     
         res.json(token);
