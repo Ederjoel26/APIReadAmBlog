@@ -49,7 +49,7 @@ router.post('/sendMailRecover', async (req, res) => {
                                     cursor: pointer;
                                     width: 95%;
                                     font-size: 18px;'>  
-                        <p>RadAm</p> </div>
+                        <p>ReadAm</p> </div>
                     <img src="https://th.bing.com/th/id/R.3291c1a14fb5181b93a66b20982e0e4e?rik=LBmnkdmjhjegow&riu=http%3a%2f%2fprofessionalhxh.weebly.com%2fuploads%2f4%2f5%2f7%2f8%2f45785219%2f7972827_orig.png&ehk=zaLl0TKkx0tKvvDgJyz72rmOmA2mSVZDkB7Vbxu%2bUWY%3d&risl=&pid=ImgRaw&r=0" style="width:80%; margin: 20px;">
                     <h1>¡Hola!</h1>
                     <p style='color: rgb(22, 22, 22);
