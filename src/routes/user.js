@@ -30,10 +30,36 @@ router.post('/sendMailRecover', async (req, res) => {
             to: `${ req.body.email }`, 
             subject: "Token de recuperacion", 
             html: `
-                <center> 
-                    <h1> Hola, bienvenido a la recuperacion de contraseña de ReadAm <h1/> 
-                    <h2> Este es tu token de recuperacion: <br/> <b> ${tokenRecover} <b/> <h2/>
-                <center/>`, 
+               <body>
+                    <div style='box-shadow: 0 4px 8px 0 rgb(0, 0, 0);
+                                max-width: 300px;
+                                background-color: #9fa3a9;
+                                margin: auto;
+                                border-radius: 10px;
+                                border: 60px;
+                                text-align: center;'>
+                    <div style='  border: none;
+                                    outline: 0;
+                                    display: inline-block;
+                                    padding: 8px;
+                                    color: white;
+                                    background-color: rgb(0, 0, 0);
+                                    text-align: center;
+                                    border-radius: 10px 10px 0px 0px;
+                                    cursor: pointer;
+                                    width: 95%;
+                                    font-size: 18px;'>  
+                        <p>RadAm</p> </div>
+                    <img src="https://th.bing.com/th/id/R.3291c1a14fb5181b93a66b20982e0e4e?rik=LBmnkdmjhjegow&riu=http%3a%2f%2fprofessionalhxh.weebly.com%2fuploads%2f4%2f5%2f7%2f8%2f45785219%2f7972827_orig.png&ehk=zaLl0TKkx0tKvvDgJyz72rmOmA2mSVZDkB7Vbxu%2bUWY%3d&risl=&pid=ImgRaw&r=0" style="width:80%; margin: 20px;">
+                    <h1>¡Hola!</h1>
+                    <p style='color: rgb(22, 22, 22);
+                                    font-size: 18px;'>
+                        Estas recibiendo este correo porque has solicitado una recuperación de contraseña para tu cuenta. <br/>
+                        Este es tu código de verificación:</p>
+                    <p> <h1> ${ tokenRecover } </h1> </p>
+                    <div><br></div>
+                    </div>
+                </body>`, 
         });
         res.json(tokenRecover);
     }catch (e){
@@ -71,7 +97,7 @@ router.post('/sendMail', async(req, res) => {
                                 font-size: 18px;'>  
                         <p> ReadAm </p> 
                     </div>
-                    <img src="https://th.bing.com/th/id/R.3291c1a14fb5181b93a66b20982e0e4e?rik=LBmnkdmjhjegow&riu=http%3a%2f%2fprofessionalhxh.weebly.com%2fuploads%2f4%2f5%2f7%2f8%2f45785219%2f7972827_orig.png&ehk=zaLl0TKkx0tKvvDgJyz72rmOmA2mSVZDkB7Vbxu%2bUWY%3d&risl=&pid=ImgRaw&r=0" alt="John" style="width:80%; margin: 20px;">
+                    <img src="https://th.bing.com/th/id/R.3291c1a14fb5181b93a66b20982e0e4e?rik=LBmnkdmjhjegow&riu=http%3a%2f%2fprofessionalhxh.weebly.com%2fuploads%2f4%2f5%2f7%2f8%2f45785219%2f7972827_orig.png&ehk=zaLl0TKkx0tKvvDgJyz72rmOmA2mSVZDkB7Vbxu%2bUWY%3d&risl=&pid=ImgRaw&r=0" alt="ReadAmLogo" style="width:80%; margin: 20px;">
                     <h1 style='color: rgb(22, 22, 22);'> Bienvenido </h1>
                     <p style='color: rgb(22, 22, 22);
                             font-size: 18px;'> 
