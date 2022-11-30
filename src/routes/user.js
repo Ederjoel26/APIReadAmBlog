@@ -28,7 +28,7 @@ router.post('/sendMailRecover', async (req, res) => {
         await transporter.sendMail({
             from: '"Recuperacion de contraseña" <readam970@gmail.com>', 
             to: `${ req.body.email }`, 
-            subject: "Token de recuperacion", 
+            subject: "Código de recuperación", 
             html: `
                <body>
                     <div style='box-shadow: 0 4px 8px 0 rgb(0, 0, 0);
