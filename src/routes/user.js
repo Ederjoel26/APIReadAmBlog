@@ -50,37 +50,6 @@ router.post('/sendMail', async(req, res) => {
             to: `${ req.body.email }`, 
             subject: "Hola nuevo usuario", 
             html: `
-            <style>
-                .title {
-                    color: rgb(22, 22, 22);
-                    font-size: 18px;
-                }
-                
-                .flo{
-                    border: none;
-                    outline: 0;
-                    display: inline-block;
-                    padding: 8px;
-                    color: white;
-                    background-color: rgb(0, 0, 0);
-                    text-align: center;
-                    border-radius: 10px 10px 0px 0px;
-                    cursor: pointer;
-                    width: 95%;
-                    
-                    font-size: 18px;
-                }
-                
-                a {
-                    text-decoration: none;
-                    font-size: 22px;
-                    color: black;
-                }
-                
-                img {
-                    margin: 20px;
-                }
-            </style>
             <body>
                 <div style='box-shadow: 0 4px 8px 0 rgb(0, 0, 0);
                             max-width: 300px;
@@ -89,12 +58,25 @@ router.post('/sendMail', async(req, res) => {
                             border-radius: 10px;
                             border: 60px;
                             text-align: center;'>
-                    <div class="flo">  
+                    <div style='border: none;
+                                outline: 0;
+                                display: inline-block;
+                                padding: 8px;
+                                color: white;
+                                background-color: rgb(0, 0, 0);
+                                text-align: center;
+                                border-radius: 10px 10px 0px 0px;
+                                cursor: pointer;
+                                width: 95%;
+                                font-size: 18px;'>  
                         <p> ReadAm </p> 
                     </div>
-                    <img src="Logo (1).png" alt="John" style="width:80%">
+                    <img src="Logo (1).png" alt="John" style="width:80%; margin: 20px;">
                     <h1> Bienvenido </h1>
-                    <p class="title"> Tu codigo de verificaion es: </p>
+                    <p style='color: rgb(22, 22, 22);
+                            font-size: 18px;'> 
+                        Tu codigo de verificaion es: 
+                    </p>
                     <p> 
                         <h1>${ token }</h1> 
                     </p>
