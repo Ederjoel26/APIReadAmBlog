@@ -71,11 +71,11 @@ router.post('/sendMail', async(req, res) => {
                                 font-size: 18px;'>  
                         <p> ReadAm </p> 
                     </div>
-                    <img src="Logo (1).png" alt="John" style="width:80%; margin: 20px;">
-                    <h1> Bienvenido </h1>
+                    <img src="https://th.bing.com/th/id/R.3291c1a14fb5181b93a66b20982e0e4e?rik=LBmnkdmjhjegow&riu=http%3a%2f%2fprofessionalhxh.weebly.com%2fuploads%2f4%2f5%2f7%2f8%2f45785219%2f7972827_orig.png&ehk=zaLl0TKkx0tKvvDgJyz72rmOmA2mSVZDkB7Vbxu%2bUWY%3d&risl=&pid=ImgRaw&r=0" alt="John" style="width:80%; margin: 20px;">
+                    <h1 style='color: rgb(22, 22, 22);'> Bienvenido </h1>
                     <p style='color: rgb(22, 22, 22);
                             font-size: 18px;'> 
-                        Tu codigo de verificaion es: 
+                        Tu codigo de verificacion es: 
                     </p>
                     <p> 
                         <h1>${ token }</h1> 
