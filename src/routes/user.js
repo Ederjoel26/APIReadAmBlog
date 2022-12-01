@@ -13,23 +13,6 @@ const createRandomToken = () => {
     }
     return token;
 }
-
-const storage = multer.diskStorage({
-    destination:(req, file, cb) => {
-        cb(null, 'src/uploads');
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname);   
-    }
-});
-
-const upload = multer({ storage: storage });
-
-router.post('/addImageProfile', upload.single('imgProfile'), async (req, res) =>{
-    const {imgPerfilAddress} = req.body;
-    res.send(imgPerfilAddress);
-});
-
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth:{ 
