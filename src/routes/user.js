@@ -3,8 +3,6 @@ const userSchema = require('../models/user');
 const nodemailer = require('nodemailer');
 const md5 = require('js-md5');
 const fs = require('fs');
-const { promisify } = require('util');
-const pipeline = promisify(require('stream').pipeline);
 const multer = require('multer');
 require('dotenv').config();
 const router = express.Router();
