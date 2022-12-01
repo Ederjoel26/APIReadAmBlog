@@ -13,8 +13,8 @@ const port = process.env.PORT || 9000;
 
 app.use(cors());
 app.use(express.json());
-// app.use(bodyParser.json({ extended: true }));
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'src/uploads')));
 app.use('/user', userRoutes);
 app.use('/post', postRoutes);
