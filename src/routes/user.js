@@ -2,6 +2,10 @@ const express = require('express');
 const userSchema = require('../models/user');
 const nodemailer = require('nodemailer');
 const md5 = require('js-md5');
+const fs = require('fs');
+const { promisify } = require('util');
+const pipeline = promisify(require('stream').pipeline);
+const multer = require('multer');
 require('dotenv').config();
 const router = express.Router();
 
@@ -12,6 +16,22 @@ const createRandomToken = () => {
     }
     return token;
 }
+
+const storage = multer.diskStorage({
+    destination:(req, file, cb) => {
+        cb(null, 'src/uploads');
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname );   
+    }
+});
+
+const upload = multer({ storage: storage });
+
+router.post('/addImageProfile', upload.single('imgProfile'), async (req, res) =>{
+    const {imgPerfilAddress} = req.body;
+    res.send(imgPerfilAddress);
+});
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
