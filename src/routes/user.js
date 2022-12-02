@@ -144,12 +144,8 @@ router.post('/addImage', upload.fields([{name: 'imgProfile'}, { name: 'imgBackgr
     });
 });
 
-router.post('/insert', upload.fields([{name: 'imgProfile'}, { name: 'imgBackground'}]), (req, res) => {
+router.post('/insert' , (req, res) => {
     try{
-        const { files } = req;
-        req.body.password = md5(req.body.password);
-        req.body.imgProfile = files.imgProfile[0].filename;
-        req.body.imgBackground = files.imgBackground[0].filename;
         const user = userSchema(req.body);
         user
             .save()
