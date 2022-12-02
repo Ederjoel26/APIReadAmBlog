@@ -14,21 +14,23 @@ const createRandomToken = () => {
     return token;
 }
 
+const makeRandom = () => {
+    const today = new Date();
+    const random = Math.floor(Math.random() * (1 + 1000) + 1);
+    const number = today.getDay() + '' + today.getMonth() + '' + today.getFullYear() + '' +  random;
+    return number;
+}
+
 const storage = multer.diskStorage({
     destination:(req, file, cb) => {
         cb(null, 'src/uploads');
     },
     filename: (req, file, cb) => {
-        cb(null, file.originalname);   
+        cb(null, makeRandom() + file.originalname);   
     }
 });
 
 const upload = multer({ storage: storage });
-
-router.post('/addImageProfile', upload.single('imgProfile'), async (req, res) =>{
-    const {imgPerfilAddress} = req.body;
-    res.send(imgPerfilAddress);
-});
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -134,9 +136,20 @@ router.post('/sendMail', async(req, res) => {
     }  
 });
 
-router.post('/insert', (req, res) => {
+router.post('/addImageProfile', upload.fields([{name: 'imgProfile'}, { name: 'imgBackground'}]), async (req, res) =>{
+    const { files } = req;
+    res.json({
+        'imgProfile': files.imgProfile[0].filename,
+        'imgBackground': files.imgBackground[0].filename
+    });
+});
+
+router.post('/insert', upload.fields([{name: 'imgProfile'}, { name: 'imgBackground'}]), (req, res) => {
     try{
+        const { files } = req;
         req.body.password = md5(req.body.password);
+        req.body.imgProfile = files.imgProfile[0].filename;
+        req.body.imgBackground = files.imgBackground[0].filename;
         const user = userSchema(req.body);
         user
             .save()
