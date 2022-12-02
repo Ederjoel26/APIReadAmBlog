@@ -136,7 +136,7 @@ router.post('/sendMail', async(req, res) => {
     }  
 });
 
-router.post('/addImageProfile', upload.fields([{name: 'imgProfile'}, { name: 'imgBackground'}]), async (req, res) =>{
+router.post('/addImage', upload.fields([{name: 'imgProfile'}, { name: 'imgBackground'}]), async (req, res) =>{
     const { files } = req;
     res.json({
         'imgProfile': files.imgProfile[0].filename,
