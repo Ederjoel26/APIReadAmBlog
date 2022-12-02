@@ -146,6 +146,7 @@ router.post('/addImage', upload.fields([{name: 'imgProfile'}, { name: 'imgBackgr
 
 router.post('/insert' , (req, res) => {
     try{
+        req.body.password = md5(req.body.password);
         const user = userSchema(req.body);
         user
             .save()
